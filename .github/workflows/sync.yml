@@ -25,6 +25,13 @@ jobs:
       - name: Instalar dependencias
         run: npm install --no-audit --no-fund
 
+      - name: Diagnóstico de conectividad
+        run: |
+          echo "Runner IP:"; curl -sS --max-time 15 https://api.ipify.org || true
+          echo ""
+          echo -n "SUR/AUI: "; curl -sS -o /dev/null -w "HTTP:%{http_code} tiempo:%{time_total}\n" --max-time 25 https://suraui.sanluis.gov.ar/ || true
+          echo -n "Cloudflare API: "; curl -sS -o /dev/null -w "HTTP:%{http_code}\n" --max-time 15 https://api.cloudflare.com/client/v4/user/tokens/verify || true
+
       - name: Sincronizar con SUR/AUI y Cloudflare
         env:
           SUR_USER: ${{ secrets.SUR_USER }}
