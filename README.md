@@ -6,7 +6,12 @@ Este repo ejecuta cada 10 minutos el mismo sincronizador que antes corría en la
 2. Lee los reclamos abiertos de SUR/AUI (sector 120, "No Cerrados").
 3. Sube el resultado a la Cloudflare KV `BANDEJA_AUI` que consume la app.
 
-De esta forma la app **no depende de que la PC esté encendida**.
+> **Estado: DESACTIVADO.** SUR/AUI bloquea las IPs de GitHub Actions (timeout en
+> http/https) y de Cloudflare (522). Solo responde a IPs de San Luis, Argentina
+> (la PC del usuario sale por `45.178.3.39`, AS267882). Por eso el sincronizador
+> sigue corriendo en la PC mediante la tarea programada `BandejaAUI-Sync`.
+> Este repo se conserva para reutilizarlo si se consigue un VPS con IP argentina
+> permitida. El workflow está desactivado manualmente.
 
 ## Secretos configurados
 
