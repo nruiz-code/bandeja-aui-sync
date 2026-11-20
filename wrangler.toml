@@ -1,0 +1,13 @@
+name = "bandeja-aui"
+pages_build_output_dir = "public"
+compatibility_date = "2025-06-01"
+
+[[kv_namespaces]]
+binding = "BANDEJA_AUI"
+id = "d580619d409142de9c68dd775bda1755"
+
+# No hay bindings de base de datos: los datos se leen en vivo de SUR/AUI.
+# Credenciales y PIN se configuran como secretos de Pages:
+#   npx.cmd wrangler pages secret put SUR_USER  --project-name bandeja-aui
+#   npx.cmd wrangler pages secret put SUR_PASS  --project-name bandeja-aui
+#   npx.cmd wrangler pages secret put APP_PIN   --project-name bandeja-aui
