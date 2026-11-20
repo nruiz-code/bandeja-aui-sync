@@ -29,7 +29,10 @@ jobs:
         run: |
           echo "Runner IP:"; curl -sS --max-time 15 https://api.ipify.org || true
           echo ""
-          echo -n "SUR/AUI: "; curl -sS -o /dev/null -w "HTTP:%{http_code} tiempo:%{time_total}\n" --max-time 25 https://suraui.sanluis.gov.ar/ || true
+          echo -n "SUR https: "; curl -4 -sS -o /dev/null -w "HTTP:%{http_code} tiempo:%{time_total}\n" --max-time 20 https://suraui.sanluis.gov.ar/ || true
+          echo -n "SUR http: "; curl -4 -sS -o /dev/null -w "HTTP:%{http_code} tiempo:%{time_total}\n" --max-time 20 http://suraui.sanluis.gov.ar/ || true
+          echo -n "SUR https + UA: "; curl -4 -sS -A "Mozilla/5.0" -o /dev/null -w "HTTP:%{http_code} tiempo:%{time_total}\n" --max-time 20 https://suraui.sanluis.gov.ar/ || true
+          echo "DNS:"; getent hosts suraui.sanluis.gov.ar || true
           echo -n "Cloudflare API: "; curl -sS -o /dev/null -w "HTTP:%{http_code}\n" --max-time 15 https://api.cloudflare.com/client/v4/user/tokens/verify || true
 
       - name: Sincronizar con SUR/AUI y Cloudflare
